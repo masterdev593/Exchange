@@ -1,0 +1,42 @@
+{
+  "name": "exchange",
+  "version": "1.0.0",
+  "private": true,
+  "description": "money exchange with custom Node API on Heroku",
+  "scripts": {
+    "start": "node server",
+    "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "ejs": "^2.6.1",
+    "email-templates": "^4.0.1",
+    "express": "^4.16.3",
+    "node-mailjet": "^3.2.1",
+    "nodemailer": "^4.6.7"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/proyect-y/exchange"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "create-react-app",
+    "react"
+  ],
+  "license": "MIT",
+  "author": "Israel-Laguan <https://github.com/Israel-Laguan>,Jose Javier Señaris <https://github.com/pepesenaris>",
+  "bugs": {
+    "url": "https://gitlab.com/proyect-y/exchange/issues"
+  },
+  "engines": {
+    "node": "8.13.0",
+    "npm": "6.5.0"
+  }
+}
