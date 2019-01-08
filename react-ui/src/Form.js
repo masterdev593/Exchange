@@ -1,18 +1,18 @@
 // Importaciónes
-
+import _ from 'lodash'
 import React, { Component } from 'react'
 import { Form, Input, TextArea, Button, Select, Checkbox } from 'semantic-ui-react'
 
 // Declaración de Constantes
 
 const coinsOptions = [
-    { key: 'c', text: 'Pesos Argentinos', value: 'ARS' },
+    { key: 'cArg', text: 'Pesos Argentinos', value: 'ARS' },
     { key: 'R$', text: 'Real Brasileño', value: 'BRL' },
-    { key: 'c', text: 'Pesos Chilenos', value: 'CLP' },
-    { key: 'c', text: 'Pesos Colombianos', value: 'COP' },
-    { key: 'c', text: 'Pesos Cubanos', value: 'CUP' },
+    { key: 'cChi', text: 'Pesos Chilenos', value: 'CLP' },
+    { key: 'cCol', text: 'Pesos Colombianos', value: 'COP' },
+    { key: 'cCub', text: 'Pesos Cubanos', value: 'CUP' },
     { key: 'kr', text: 'Corona Danesa', value: 'DKK' },
-    { key: 'c', text: 'Pesos Mexicanos', value: 'MXN' },
+    { key: 'cMex', text: 'Pesos Mexicanos', value: 'MXN' },
     { key: '€', text: 'Euro', value: 'EUR'},
     {key: '¥', text: 'Yen', value: 'JPY'},
     { key: '$', text: 'Dolares', value: 'USD' },
@@ -24,21 +24,44 @@ const payOptions = [
 ]
 
 const countryOptions = [
-    { key: 'arg', text: 'Argentina', value: 'arg'},
-    { key: 'bra', text: 'Brasil', value: 'bra'},
-    { key: 'chl', text: 'Chile', value: 'chl'},
-    { key: 'chn', text: 'China', value: 'chn'},
-    { key: 'col', text: 'Colombia', value: 'col' },
-    { key: 'cub', text: 'Cuba', value: 'cub'},
-    { key: 'dnk', text: 'Dinamarca', value: 'dnk'},
-    { key: 'ecu', text: 'Ecuador', value: 'ecu'},
-    { key: 'esp', text: 'España', value: 'esp'},
-    { key: 'jpn', text: 'Japon', value: 'jpn'},
-    { key: 'mex', text: 'Mexico', value: 'mex'},
-    { key: 'pry', text: 'Paraguay', value: 'pry'},
-    { key: 'per', text: 'Peru', value: 'per'},
-    { key: 'usa', text: 'USA', value: 'usa' },
+    { pos: 0 ,key: 'arg', text: 'Argentina', value: 'arg'},
+    { pos: 1 ,key: 'bra', text: 'Brasil', value: 'bra'},
+    { pos: 2 ,key: 'chl', text: 'Chile', value: 'chl'},
+    { pos: 3 ,key: 'chn', text: 'China', value: 'chn'},
+    { pos: 4 ,key: 'col', text: 'Colombia', value: 'col' },
+    { pos: 5 ,key: 'cub', text: 'Cuba', value: 'cub'},
+    { pos: 6 ,key: 'dnk', text: 'Dinamarca', value: 'dnk'},
+    { pos: 7 ,key: 'ecu', text: 'Ecuador', value: 'ecu'},
+    { pos: 8 ,key: 'esp', text: 'España', value: 'esp'},
+    { pos: 9 ,key: 'jpn', text: 'Japon', value: 'jpn'},
+    { pos: 10 ,key: 'mex', text: 'Mexico', value: 'mex'},
+    { pos: 11 ,key: 'pry', text: 'Paraguay', value: 'pry'},
+    { pos: 12 ,key: 'per', text: 'Peru', value: 'per'},
+    { pos: 13 ,key: 'usa', text: 'USA', value: 'usa' },
 ]
+
+
+// Buscador de Pais --> Valor de Moneda
+
+const countreis = _.times(countryOptions.length, (i) => ({
+    pos : i,
+    key: countryOptions[i].key,
+    text: countryOptions[i].text,
+    value: countryOptions[i].value,
+}))
+
+let select = countreis[0].pos;
+
+console.log(select);
+
+
+
+// Funciones
+
+
+
+
+
 
 // Codigo
 
