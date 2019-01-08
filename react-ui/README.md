@@ -2,7 +2,7 @@
 
 ## Resultado técnico deseado:
 
-* El frontend seria una landing page, y uno de los botones llevaría a una app hecha en React. El landing seria en HTML5 para ganar elSEO y por que no necesita estados.
+* El frontend seria una landing page, y uno de los botones llevaría a una app hecha en React. El landing seria en HTML5 para ganar el SEO y por que no necesita estados.
 * El app seria un formulario dinámico  donde arriba sale el valor de cambio de las monedas a seleccionar (alimentado por un api),  luego dos columnas abajo donde el usuario selecciona en la primera columna (llamada de envío) su moneda, el valor del envió , método de pago (una lista desplegable) y su dirección de correo, luego en la segunda columna (de recibir) el método de recibir el dinero (de una lista de posibles métodos),  el país de destino (de una lista desplegable de países posibles, basado en lo anterior) . Luego un botón de enviar y un mensaje de nos pondremos en contacto.
 
 * Un backend donde usando MailJet y email-templates mandamos la información del app a nuestro email para  ser procesada.
