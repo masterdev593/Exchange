@@ -1,11 +1,46 @@
+// Importaciónes
+
 import React, { Component } from 'react'
 import { Form, Input, TextArea, Button, Select, Checkbox } from 'semantic-ui-react'
 
+// Declaración de Constantes
+
 const coinsOptions = [
-    { key: '$', text: 'dolares', value: 'USD' },
-    { key: 'c', text: 'pesos', value: 'COP' },
+    { key: 'c', text: 'Pesos Argentinos', value: 'ARS' },
+    { key: 'R$', text: 'Real Brasileño', value: 'BRL' },
+    { key: 'c', text: 'Pesos Chilenos', value: 'CLP' },
+    { key: 'c', text: 'Pesos Colombianos', value: 'COP' },
+    { key: 'c', text: 'Pesos Cubanos', value: 'CUP' },
+    { key: 'kr', text: 'Corona Danesa', value: 'DKK' },
+    { key: 'c', text: 'Pesos Mexicanos', value: 'MXN' },
+    { key: '€', text: 'Euro', value: 'EUR'},
+    {key: '¥', text: 'Yen', value: 'JPY'},
+    { key: '$', text: 'Dolares', value: 'USD' },
 ]
 
+const payOptions = [
+    { key: 'paypal', text: 'PayPal', value: 'paypal' },
+    { key: 'bank', text: 'Transferencia Bancaria', value: 'bank' },
+]
+
+const countryOptions = [
+    { key: 'arg', text: 'Argentina', value: 'arg'},
+    { key: 'bra', text: 'Brasil', value: 'bra'},
+    { key: 'chl', text: 'Chile', value: 'chl'},
+    { key: 'chn', text: 'China', value: 'chn'},
+    { key: 'col', text: 'Colombia', value: 'col' },
+    { key: 'cub', text: 'Cuba', value: 'cub'},
+    { key: 'dnk', text: 'Dinamarca', value: 'dnk'},
+    { key: 'ecu', text: 'Ecuador', value: 'ecu'},
+    { key: 'esp', text: 'España', value: 'esp'},
+    { key: 'jpn', text: 'Japon', value: 'jpn'},
+    { key: 'mex', text: 'Mexico', value: 'mex'},
+    { key: 'pry', text: 'Paraguay', value: 'pry'},
+    { key: 'per', text: 'Peru', value: 'per'},
+    { key: 'usa', text: 'USA', value: 'usa' },
+]
+
+// Codigo
 
 export default class FormView extends Component {
     state = { moneyQty: '', email: '', submittedName: '', submittedEmail: '' }
@@ -69,7 +104,7 @@ export default class FormView extends Component {
                         label='Email'
                         name='email'
                         control={Input}
-                        placeholder='ejemplo@ymail.com'
+                        placeholder='ejemplo@gmail.com'
                         value={email}
                         onChange={this.handleChange}
                     />
@@ -106,22 +141,16 @@ export default class FormView extends Component {
                         content='Submit'
                     />
                 </Form>
-                <strong>onChange:</strong>
+
+                {/* Comento estas lineas porque generan un error, cuando este configurado descomentar y revisar el funcionamiento */}
+
+
+                {/* <strong>onChange:</strong>
                 <pre>{JSON.stringify({ moneyQty, email }, null, 2)}</pre>
                 <strong>onSubmit:</strong>
-                <pre>{JSON.stringify({ submittedName, submittedEmail }, null, 2)}</pre>
+                <pre>{JSON.stringify({ submittedName, submittedEmail }, null, 2)}</pre> */}
+
             </div>
         )
     }
 }
-
-
-const payOptions = [
-    { key: 'paypal', text: 'PayPal', value: 'paypal' },
-    { key: 'bank', text: 'Transferencia Bancaria', value: 'bank' },
-]
-
-const countryOptions = [
-    { key: 'usa', text: 'USA', value: 'usa' },
-    { key: 'col', text: 'Colombia', value: 'col' },
-]

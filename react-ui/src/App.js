@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Switch, Route } from "react-router-dom";
-import logo from "./logo.svg";
+import logo from "./logo.png";
 import "./App.css";
 import FormView from './Form';
 import { Card, Placeholder } from 'semantic-ui-react'
@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Bienvenido a Exchange</h1>
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <div className="App-intro">
@@ -20,7 +20,7 @@ class App extends Component {
           <Card.Group itemsPerRow={2}>
             <Card>
               <Card.Content>
-                Moneda A
+                Moneda Origen
                 <Placeholder>
                   <Placeholder.Image rectangular />
                 </Placeholder>
@@ -28,7 +28,7 @@ class App extends Component {
             </Card>
             <Card>
               <Card.Content>
-                Moneda B
+                Moneda Destino
                 <Placeholder>
                   <Placeholder.Image rectangular />
                 </Placeholder>
