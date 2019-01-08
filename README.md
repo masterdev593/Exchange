@@ -1,45 +1,45 @@
-## Install & Setup
+## Instalación y Configuración
 
-Install & run React app:
+Instalar y Ejecutar la Aplicación React:
 
 ```
-$> cd react-ui
+$> cd reaccion-ui
 
-$> npm install
+$> npm instalar
 
 $> npm start
 ```
 
-Install & run API server:
+Instalar y Ejecutar el Servidor API:
 
 ```
-$> npm install
+$> npm instalar
 
 $> npm start
 ```
 
-## Available Scripts
+## Scripts Disponibles
 
-In the project directory, you can run:
+En el directorio del proyecto, puede ejecutar:
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
+Ejecuta la aplicación en el modo de desarrollo. <br>
+Abra [http: // localhost: 5000] (http: // localhost: 5000) para verlo en el navegador.
 
-## App setup
+## Configuración de la Aplicación
 
-More on this later, keep tuned!
+Más sobre esto más tarde, estad atentos!
 
-## Contribuyendo 
+## Contribuyendo
 Quieres ayudar? ¡Genial! Hay muchas formas de hacerlo:
 
-**Contribuya con código:** Configure el entorno de desarrollo, realice algunos cambios y abra una solicitud de extracción(Pull Request). 
+** Contribuya con Código: ** Configure el entorno de desarrollo, realice una solicitud de extracción.
 
-**Contribuya con ideas:** ¿Tiene una gran idea, pero no sabe cómo codificar (o tal vez es demasiado perezoso para hacerlo)? ¡No hay problema! Abre un tema(Issue) para que podamos hablar sobre tu genial idea.
+** Contribuya con Ideas: ** ¿Tiene una gran idea, pero no sabe cómo codificar (o tal vez es demasiado perezoso para hacerlo)? ¡No hay problema! Abre un tema para que puedas hablar sobre tu idea genial.
 
-**Contribuye con la caza de errores:** Tenemos un increíble equipo de cazadores de errores. Puedes [unirte a nuestro servidor](https://discord.gg/YmgErgv) y solicitar el rol *Cazador de Bugs*™. Después de eso, puedes comenzar a buscar errores y reportarlos.
+** Contribuye con la Caza de Errores: ** Tenemos un increíble equipo de cazadores de errores. Puedes [unirte a nuestro servidor] (https://discord.gg/YmgErgv) y solicitar el rol * Cazador de Bugs * ™. Después de eso, puedes comenzar a buscar errores y reportarlos.
 
-**Contribuye con traducciones:** Que la aplicación sea multilenguaje es importante de este modo llegaremos a la mayoria de usuarios posibles.
+** Contribuye con las Traducciones: ** Que la aplicación sea multilenguaje es importante en este modo de llegar a la mayoria de usuarios posibles.
 
-**Únete** a nuestro servidor en **[Discord](https://discord.gg/YmgErgv)** y enterate de todas las etapas de desarrollo. A veces hacemos chistes malos.
+** Únete ** a Nuestro Servidor en ** [Discord] (https://discord.gg/YmgErgv) ** y enterate de todas las etapas de desarrollo. A veces hacemos chistes malos.
