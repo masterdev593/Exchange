@@ -34,12 +34,12 @@ Más sobre esto más tarde, estad atentos!
 ## Contribuyendo
 Quieres ayudar? ¡Genial! Hay muchas formas de hacerlo:
 
-** Contribuya con Código: ** Configure el entorno de desarrollo, realice una solicitud de extracción.
+**Contribuya con Código:** Configure el entorno de desarrollo, realice una solicitud de extracción.
 
-** Contribuya con Ideas: ** ¿Tiene una gran idea, pero no sabe cómo codificar (o tal vez es demasiado perezoso para hacerlo)? ¡No hay problema! Abre un tema para que puedas hablar sobre tu idea genial.
+**Contribuya con Ideas:** ¿Tiene una gran idea, pero no sabe cómo codificar (o tal vez es demasiado perezoso para hacerlo)? ¡No hay problema! Abre un tema para que puedas hablar sobre tu idea genial.
 
-** Contribuye con la Caza de Errores: ** Tenemos un increíble equipo de cazadores de errores. Puedes [unirte a nuestro servidor] (https://discord.gg/YmgErgv) y solicitar el rol * Cazador de Bugs * ™. Después de eso, puedes comenzar a buscar errores y reportarlos.
+**Contribuye con la Caza de Errores:** Tenemos un increíble equipo de cazadores de errores. Puedes [unirte a nuestro servidor] (https://discord.gg/YmgErgv) y solicitar el rol *Cazador de Bugs* ™. Después de eso, puedes comenzar a buscar errores y reportarlos.
 
-** Contribuye con las Traducciones: ** Que la aplicación sea multilenguaje es importante en este modo de llegar a la mayoria de usuarios posibles.
+**Contribuye con las Traducciones:** Que la aplicación sea multilenguaje es importante en este modo de llegar a la mayoria de usuarios posibles.
 
-** Únete ** a Nuestro Servidor en ** [Discord] (https://discord.gg/YmgErgv) ** y enterate de todas las etapas de desarrollo. A veces hacemos chistes malos.
+**Únete** a Nuestro Servidor en **[Discord] (https://discord.gg/YmgErgv)** y enterate de todas las etapas de desarrollo. A veces hacemos chistes malos.
