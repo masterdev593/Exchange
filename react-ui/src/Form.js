@@ -6,6 +6,7 @@ import { Form, Input, TextArea, Button, Select, Checkbox, Segment } from 'semant
 export default class FormView extends Component {
     state = { moneyQty: '', email: '', submittedName: '', submittedEmail: false, checked: false }
     toggle = () => this.setState({ checked: !this.state.checked })
+    
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
     handleSubmit = () => {
@@ -160,20 +161,20 @@ const payOptions = [
 ]
 
 const countryOptions = [
-    { pos: 0, key: 'arg', text: 'Argentina', value: 'arg' },
-    { pos: 1, key: 'bra', text: 'Brasil', value: 'bra' },
-    { pos: 2, key: 'chl', text: 'Chile', value: 'chl' },
-    { pos: 3, key: 'chn', text: 'China', value: 'chn' },
-    { pos: 4, key: 'col', text: 'Colombia', value: 'col' },
-    { pos: 5, key: 'cub', text: 'Cuba', value: 'cub' },
-    { pos: 6, key: 'dnk', text: 'Dinamarca', value: 'dnk' },
-    { pos: 7, key: 'ecu', text: 'Ecuador', value: 'ecu' },
-    { pos: 8, key: 'esp', text: 'España', value: 'esp' },
-    { pos: 9, key: 'jpn', text: 'Japon', value: 'jpn' },
-    { pos: 10, key: 'mex', text: 'Mexico', value: 'mex' },
-    { pos: 11, key: 'pry', text: 'Paraguay', value: 'pry' },
-    { pos: 12, key: 'per', text: 'Peru', value: 'per' },
-    { pos: 13, key: 'usa', text: 'USA', value: 'usa' },
+    { key: 'arg', text: 'Argentina', value: 'arg' },
+    { key: 'bra', text: 'Brasil', value: 'bra' },
+    { key: 'chl', text: 'Chile', value: 'chl' },
+    { key: 'chn', text: 'China', value: 'chn' },
+    { key: 'col', text: 'Colombia', value: 'col' },
+    { key: 'cub', text: 'Cuba', value: 'cub' },
+    { key: 'dnk', text: 'Dinamarca', value: 'dnk' },
+    { key: 'ecu', text: 'Ecuador', value: 'ecu' },
+    { key: 'esp', text: 'España', value: 'esp' },
+    { key: 'jpn', text: 'Japon', value: 'jpn' },
+    { key: 'mex', text: 'Mexico', value: 'mex' },
+    { key: 'pry', text: 'Paraguay', value: 'pry' },
+    { key: 'per', text: 'Peru', value: 'per' },
+    { key: 'usa', text: 'USA', value: 'usa' },
 ]
 
 
@@ -186,6 +187,7 @@ const countreis = _.times(countryOptions.length, (i) => ({
     value: countryOptions[i].value,
 }))
 
-let select = countreis[0].pos;
+// Valor que recoge el select, se tiene que actualizar en caso de que el select cambie 
+let select = countreis[render().coinsOptions.value].pos;
 
 console.log(select);
