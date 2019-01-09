@@ -19,7 +19,7 @@ export default class FormView extends Component {
                 alert(message);
             });
         } else {
-            alert("Please add an email");
+            alert('Introduce un Correo Electrónico Valido');
         }
         this.setState({ submittedInfo: body, submittedEmail: email, moneyQty: '', email: '' })
     }
@@ -44,17 +44,17 @@ export default class FormView extends Component {
                             control={Select}
                             options={coinsOptions}
                             label={{ children: 'Moneda a enviar', htmlFor: 'form-select-control-currency-send' }}
-                            placeholder='Moneda a enviar'
+                            placeholder='Moneda a Enviar'
+                            name='currencySend'
                             search
                             searchInput={{ id: 'form-select-control-coin-send' }}
-                            name='currencySend'
                             onChange={this.handleChange}
                         />
                         <Form.Field
                             id='form-input-control-money-value'
                             control={Input}
                             value={moneyQty}
-                            label='Cuanto de la moneda?'
+                            label='Cuanto de la Moneda?'
                             placeholder='$'
                             name='moneyQty'
                             onChange={this.handleChange}
@@ -63,7 +63,7 @@ export default class FormView extends Component {
                             control={Select}
                             options={payOptions}
                             label={{ children: 'Metodo', htmlFor: 'form-select-control-method-send' }}
-                            placeholder='Metodo de pago'
+                            placeholder='Metodo de Pago'
                             name='methodSend'
                             search
                             searchInput={{ id: 'form-select-control-method-send' }}
@@ -84,7 +84,7 @@ export default class FormView extends Component {
                         control={Select}
                         options={payOptions}
                         label={{ children: 'Metodo de recibir el envio', htmlFor: 'form-select-control-method-receive' }}
-                        placeholder='Metodo de recibir'
+                        placeholder='Metodo de Recibir'
                         name='methodReceive'
                         search
                         searchInput={{ id: 'form-select-control-method-receive' }}
@@ -94,7 +94,7 @@ export default class FormView extends Component {
                         control={Select}
                         options={countryOptions}
                         label={{ children: 'Pais de Destino', htmlFor: 'form-select-control-country-receive' }}
-                        placeholder='Elija un Pais con cobertura'
+                        placeholder='Elija un Pais con Cobertura'
                         name='countryReceive'
                         search
                         searchInput={{ id: 'form-select-control-country-receive' }}
@@ -112,21 +112,18 @@ export default class FormView extends Component {
                     <Form.Field
                         control={Checkbox}
                         checked={checked}
-                        label={<label>Acepto los Terminos y condiciones</label>}
+                        label={<label>Acepto los Terminos y Condiciones</label>}
                         onChange={this.toggle}
                     />
                     <Form.Field
                         id='form-button-control-public'
                         control={Button}
-                        label='Confirma la informacion'
-                        content='Submit'
+                        label='Confirma la Informacion'
+                        content='Enviar'
                         onChange={this.handleChange}
                         disabled={checked ? false : true}
                     />
                 </Form>
-
-                {/* Comento estas lineas porque generan un error, cuando este configurado descomentar y revisar el funcionamiento */}
-
 
                 <strong>onChange:</strong>
                 <pre>{JSON.stringify({ moneyQty, email }, null, 2)}</pre>
@@ -143,16 +140,16 @@ export default class FormView extends Component {
 // Declaración de Constantes
 
 const coinsOptions = [
-    { key: 'cArg', text: 'Pesos Argentinos', value: 'ARS' },
-    { key: 'R$', text: 'Real Brasileño', value: 'BRL' },
-    { key: 'cChi', text: 'Pesos Chilenos', value: 'CLP' },
-    { key: 'cCol', text: 'Pesos Colombianos', value: 'COP' },
-    { key: 'cCub', text: 'Pesos Cubanos', value: 'CUP' },
-    { key: 'kr', text: 'Corona Danesa', value: 'DKK' },
-    { key: 'cMex', text: 'Pesos Mexicanos', value: 'MXN' },
-    { key: '€', text: 'Euro', value: 'EUR' },
-    { key: '¥', text: 'Yen', value: 'JPY' },
-    { key: '$', text: 'Dolares', value: 'USD' },
+    { key: 'ARS', text: 'Pesos Argentinos', value: '$-ARG' },
+    { key: 'BRL', text: 'Real Brasileño', value: 'R$' },
+    { key: 'CLP', text: 'Pesos Chilenos', value: '$-CHI' },
+    { key: 'COP', text: 'Pesos Colombianos', value: '$-COL' },
+    { key: 'CUP', text: 'Pesos Cubanos', value: '$-CUB' },
+    { key: 'DKK', text: 'Corona Danesa', value: 'kr' },
+    { key: 'MXN', text: 'Pesos Mexicanos', value: '$-MEX' },
+    { key: 'EUR', text: 'Euro', value: '€' },
+    { key: 'JPY', text: 'Yen', value: '¥' },
+    { key: 'USD', text: 'Dolares', value: '$' },
 ]
 
 const payOptions = [
@@ -176,18 +173,3 @@ const countryOptions = [
     { key: 'per', text: 'Peru', value: 'per' },
     { key: 'usa', text: 'USA', value: 'usa' },
 ]
-
-
-// Buscador de Pais --> Valor de Moneda
-
-const countreis = _.times(countryOptions.length, (i) => ({
-    pos: i,
-    key: countryOptions[i].key,
-    text: countryOptions[i].text,
-    value: countryOptions[i].value,
-}))
-
-// Valor que recoge el select, se tiene que actualizar en caso de que el select cambie 
-let select = countreis[render().coinsOptions.value].pos;
-
-console.log(select);
