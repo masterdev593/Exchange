@@ -54,22 +54,22 @@ export default class FormView extends Component {
                             id='form-input-control-money-value'
                             control={Input}
                             value={moneyQty}
-                            label='Cuanto de la Moneda?'
+                            label='Cantidad a Enviar'
                             placeholder='$'
                             name='moneyQty'
                             onChange={this.handleChange}
                         />
                         <Form.Field
-                            control={Select}
-                            options={payOptions}
-                            label={{ children: 'Metodo', htmlFor: 'form-select-control-method-send' }}
-                            placeholder='Metodo de Pago'
-                            name='methodSend'
-                            search
-                            searchInput={{ id: 'form-select-control-method-send' }}
+                            id='form-input-control-money-value'
+                            control={Input}
+                            value={moneyQty*coinsOptions[7].value}
+                            label='Cantidad a Recibir'
+                            placeholder='$'
+                            name='moneyQty'
                             onChange={this.handleChange}
                         />
                     </Form.Group>
+                    
                     <Form.Input
                         label='Email'
                         name='email'
@@ -78,18 +78,31 @@ export default class FormView extends Component {
                         value={email}
                         onChange={this.handleChange}
                     />
-
+                    
                     {/* Receipt Area */}
-                    <Form.Field
-                        control={Select}
-                        options={payOptions}
-                        label={{ children: 'Metodo de recibir el envio', htmlFor: 'form-select-control-method-receive' }}
-                        placeholder='Metodo de Recibir'
-                        name='methodReceive'
-                        search
-                        searchInput={{ id: 'form-select-control-method-receive' }}
-                        onChange={this.handleChange}
-                    />
+                    <Form.Group widths='equal'>
+                        <Form.Field
+                                control={Select}
+                                options={payOptions}
+                                label={{ children: 'Metodo', htmlFor: 'form-select-control-method-send' }}
+                                placeholder='Metodo de Pago'
+                                name='methodSend'
+                                search
+                                searchInput={{ id: 'form-select-control-method-send' }}
+                                onChange={this.handleChange}
+                            />
+                        <Form.Field
+                            control={Select}
+                            options={payOptions}
+                            label={{ children: 'Metodo de recibir el envio', htmlFor: 'form-select-control-method-receive' }}
+                            placeholder='Metodo de Recibir'
+                            name='methodReceive'
+                            search
+                            searchInput={{ id: 'form-select-control-method-receive' }}
+                            onChange={this.handleChange}
+                        />
+                    </Form.Group>
+
                     <Form.Field
                         control={Select}
                         options={countryOptions}
@@ -140,16 +153,16 @@ export default class FormView extends Component {
 // Declaración de Constantes
 
 const coinsOptions = [
-    { key: 'ARS', text: 'Pesos Argentinos', value: '$-ARG' },
-    { key: 'BRL', text: 'Real Brasileño', value: 'R$' },
-    { key: 'CLP', text: 'Pesos Chilenos', value: '$-CHI' },
-    { key: 'COP', text: 'Pesos Colombianos', value: '$-COL' },
-    { key: 'CUP', text: 'Pesos Cubanos', value: '$-CUB' },
-    { key: 'DKK', text: 'Corona Danesa', value: 'kr' },
-    { key: 'MXN', text: 'Pesos Mexicanos', value: '$-MEX' },
-    { key: 'EUR', text: 'Euro', value: '€' },
-    { key: 'JPY', text: 'Yen', value: '¥' },
-    { key: 'USD', text: 'Dolares', value: '$' },
+    { key: 'ARS', text: 'Pesos Argentinos', value: '37.55' },
+    { key: 'BRL', text: 'Real Brasileño', value: '3.70' },
+    { key: 'CLP', text: 'Pesos Chilenos', value: '679.28' },
+    { key: 'COP', text: 'Pesos Colombianos', value: '3151.15' },
+    { key: 'CUP', text: 'Pesos Cubanos', value: '1' },
+    { key: 'DKK', text: 'Corona Danesa', value: '6.52' },
+    { key: 'MXN', text: 'Pesos Mexicanos', value: '19.35' },
+    { key: 'EUR', text: 'Euro', value: '0.87' },
+    { key: 'JPY', text: 'Yen', value: '108.85' },
+    { key: 'USD', text: 'Dolares', value: '1' },
 ]
 
 const payOptions = [
