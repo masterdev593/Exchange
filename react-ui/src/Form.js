@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { Form, Input, TextArea, Button, Select, Checkbox, Segment } from 'semantic-ui-react'
 
 export default class FormView extends Component {
-    state = { moneyQty: '', email: '', submittedName: '', submittedEmail: false, checked: false }
+    state = { moneyQty: '', currencySend: '', email: '', submittedName: '', submittedEmail: false, checked: false }
     toggle = () => this.setState({ checked: !this.state.checked })
     
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
@@ -21,7 +21,7 @@ export default class FormView extends Component {
         } else {
             alert('Introduce un Correo Electrónico Valido');
         }
-        this.setState({ submittedInfo: body, submittedEmail: email, moneyQty: '', email: '' })
+        this.setState({ submittedInfo: body, submittedEmail: email, moneyQty: '', email: '', currencySend: '' })
     }
 
     sendEmail = (email, body) => {
@@ -32,9 +32,8 @@ export default class FormView extends Component {
             body: JSON.stringify({ email, userName: body })
         }).then(response => response.json());
     };
-
     render() {
-        const { moneyQty, email, submittedInfo, submittedEmail, checked } = this.state
+        const { moneyQty, currencySend, email, submittedInfo, submittedEmail, checked } = this.state
 
         return (
             <Segment inverted>
@@ -62,10 +61,10 @@ export default class FormView extends Component {
                         <Form.Field
                             id='form-input-control-money-value'
                             control={Input}
-                            value={moneyQty*coinsOptions[7].value}
+                            value={moneyQty*this.state.currencySend}
                             label='Cantidad a Recibir'
                             placeholder='$'
-                            name='moneyQty'
+                            name='moneyQtyAuto'
                             onChange={this.handleChange}
                         />
                     </Form.Group>
@@ -157,7 +156,7 @@ const coinsOptions = [
     { key: 'BRL', text: 'Real Brasileño', value: '3.70' },
     { key: 'CLP', text: 'Pesos Chilenos', value: '679.28' },
     { key: 'COP', text: 'Pesos Colombianos', value: '3151.15' },
-    { key: 'CUP', text: 'Pesos Cubanos', value: '1' },
+    { key: 'CUP', text: 'Pesos Cubanos', value: '1.0' },
     { key: 'DKK', text: 'Corona Danesa', value: '6.52' },
     { key: 'MXN', text: 'Pesos Mexicanos', value: '19.35' },
     { key: 'EUR', text: 'Euro', value: '0.87' },
