@@ -4,8 +4,9 @@ import React, { Component } from 'react'
 import { Form, Input, TextArea, Button, Select, Checkbox, Segment } from 'semantic-ui-react'
 
 export default class FormView extends Component {
-    state = { moneyQty: '', email: '', submittedName: '', submittedEmail: false, checked: false }
+    state = { moneyQty: '', currencySend: '', email: '', submittedName: '', submittedEmail: false, checked: false }
     toggle = () => this.setState({ checked: !this.state.checked })
+    
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
     handleSubmit = () => {
@@ -18,9 +19,9 @@ export default class FormView extends Component {
                 alert(message);
             });
         } else {
-            alert("Please add an email");
+            alert('Introduce un Correo Electrónico Valido');
         }
-        this.setState({ submittedInfo: body, submittedEmail: email, moneyQty: '', email: '' })
+        this.setState({ submittedInfo: body, submittedEmail: email, moneyQty: '', email: '', currencySend: '' })
     }
 
     sendEmail = (email, body) => {
@@ -31,9 +32,8 @@ export default class FormView extends Component {
             body: JSON.stringify({ email, userName: body })
         }).then(response => response.json());
     };
-
     render() {
-        const { moneyQty, email, submittedInfo, submittedEmail, checked } = this.state
+        const { moneyQty, currencySend, email, submittedInfo, submittedEmail, checked } = this.state
 
         return (
             <Segment inverted>
@@ -43,32 +43,32 @@ export default class FormView extends Component {
                             control={Select}
                             options={coinsOptions}
                             label={{ children: 'Moneda a enviar', htmlFor: 'form-select-control-currency-send' }}
-                            placeholder='Moneda a enviar'
+                            placeholder='Moneda a Enviar'
+                            name='currencySend'
                             search
                             searchInput={{ id: 'form-select-control-coin-send' }}
-                            name='currencySend'
                             onChange={this.handleChange}
                         />
                         <Form.Field
                             id='form-input-control-money-value'
                             control={Input}
                             value={moneyQty}
-                            label='Cuanto de la moneda?'
+                            label='Cantidad a Enviar'
                             placeholder='$'
                             name='moneyQty'
                             onChange={this.handleChange}
                         />
                         <Form.Field
-                            control={Select}
-                            options={payOptions}
-                            label={{ children: 'Metodo', htmlFor: 'form-select-control-method-send' }}
-                            placeholder='Metodo de pago'
-                            name='methodSend'
-                            search
-                            searchInput={{ id: 'form-select-control-method-send' }}
+                            id='form-input-control-money-value'
+                            control={Input}
+                            value={moneyQty*this.state.currencySend}
+                            label='Cantidad a Recibir'
+                            placeholder='$'
+                            name='moneyQtyAuto'
                             onChange={this.handleChange}
                         />
                     </Form.Group>
+                    
                     <Form.Input
                         label='Email'
                         name='email'
@@ -77,23 +77,36 @@ export default class FormView extends Component {
                         value={email}
                         onChange={this.handleChange}
                     />
-
+                    
                     {/* Receipt Area */}
-                    <Form.Field
-                        control={Select}
-                        options={payOptions}
-                        label={{ children: 'Metodo de recibir el envio', htmlFor: 'form-select-control-method-receive' }}
-                        placeholder='Metodo de recibir'
-                        name='methodReceive'
-                        search
-                        searchInput={{ id: 'form-select-control-method-receive' }}
-                        onChange={this.handleChange}
-                    />
+                    <Form.Group widths='equal'>
+                        <Form.Field
+                                control={Select}
+                                options={payOptions}
+                                label={{ children: 'Metodo', htmlFor: 'form-select-control-method-send' }}
+                                placeholder='Metodo de Pago'
+                                name='methodSend'
+                                search
+                                searchInput={{ id: 'form-select-control-method-send' }}
+                                onChange={this.handleChange}
+                            />
+                        <Form.Field
+                            control={Select}
+                            options={payOptions}
+                            label={{ children: 'Metodo de recibir el envio', htmlFor: 'form-select-control-method-receive' }}
+                            placeholder='Metodo de Recibir'
+                            name='methodReceive'
+                            search
+                            searchInput={{ id: 'form-select-control-method-receive' }}
+                            onChange={this.handleChange}
+                        />
+                    </Form.Group>
+
                     <Form.Field
                         control={Select}
                         options={countryOptions}
                         label={{ children: 'Pais de Destino', htmlFor: 'form-select-control-country-receive' }}
-                        placeholder='Elija un Pais con cobertura'
+                        placeholder='Elija un Pais con Cobertura'
                         name='countryReceive'
                         search
                         searchInput={{ id: 'form-select-control-country-receive' }}
@@ -111,21 +124,18 @@ export default class FormView extends Component {
                     <Form.Field
                         control={Checkbox}
                         checked={checked}
-                        label={<label>Acepto los Terminos y condiciones</label>}
+                        label={<label>Acepto los Terminos y Condiciones</label>}
                         onChange={this.toggle}
                     />
                     <Form.Field
                         id='form-button-control-public'
                         control={Button}
-                        label='Confirma la informacion'
-                        content='Submit'
+                        label='Confirma la Informacion'
+                        content='Enviar'
                         onChange={this.handleChange}
                         disabled={checked ? false : true}
                     />
                 </Form>
-
-                {/* Comento estas lineas porque generan un error, cuando este configurado descomentar y revisar el funcionamiento */}
-
 
                 <strong>onChange:</strong>
                 <pre>{JSON.stringify({ moneyQty, email }, null, 2)}</pre>
@@ -142,16 +152,16 @@ export default class FormView extends Component {
 // Declaración de Constantes
 
 const coinsOptions = [
-    { key: 'cArg', text: 'Pesos Argentinos', value: 'ARS' },
-    { key: 'R$', text: 'Real Brasileño', value: 'BRL' },
-    { key: 'cChi', text: 'Pesos Chilenos', value: 'CLP' },
-    { key: 'cCol', text: 'Pesos Colombianos', value: 'COP' },
-    { key: 'cCub', text: 'Pesos Cubanos', value: 'CUP' },
-    { key: 'kr', text: 'Corona Danesa', value: 'DKK' },
-    { key: 'cMex', text: 'Pesos Mexicanos', value: 'MXN' },
-    { key: '€', text: 'Euro', value: 'EUR' },
-    { key: '¥', text: 'Yen', value: 'JPY' },
-    { key: '$', text: 'Dolares', value: 'USD' },
+    { key: 'ARS', text: 'Pesos Argentinos', value: '37.55' },
+    { key: 'BRL', text: 'Real Brasileño', value: '3.70' },
+    { key: 'CLP', text: 'Pesos Chilenos', value: '679.28' },
+    { key: 'COP', text: 'Pesos Colombianos', value: '3151.15' },
+    { key: 'CUP', text: 'Pesos Cubanos', value: '1.0' },
+    { key: 'DKK', text: 'Corona Danesa', value: '6.52' },
+    { key: 'MXN', text: 'Pesos Mexicanos', value: '19.35' },
+    { key: 'EUR', text: 'Euro', value: '0.87' },
+    { key: 'JPY', text: 'Yen', value: '108.85' },
+    { key: 'USD', text: 'Dolares', value: '1' },
 ]
 
 const payOptions = [
@@ -160,32 +170,18 @@ const payOptions = [
 ]
 
 const countryOptions = [
-    { pos: 0, key: 'arg', text: 'Argentina', value: 'arg' },
-    { pos: 1, key: 'bra', text: 'Brasil', value: 'bra' },
-    { pos: 2, key: 'chl', text: 'Chile', value: 'chl' },
-    { pos: 3, key: 'chn', text: 'China', value: 'chn' },
-    { pos: 4, key: 'col', text: 'Colombia', value: 'col' },
-    { pos: 5, key: 'cub', text: 'Cuba', value: 'cub' },
-    { pos: 6, key: 'dnk', text: 'Dinamarca', value: 'dnk' },
-    { pos: 7, key: 'ecu', text: 'Ecuador', value: 'ecu' },
-    { pos: 8, key: 'esp', text: 'España', value: 'esp' },
-    { pos: 9, key: 'jpn', text: 'Japon', value: 'jpn' },
-    { pos: 10, key: 'mex', text: 'Mexico', value: 'mex' },
-    { pos: 11, key: 'pry', text: 'Paraguay', value: 'pry' },
-    { pos: 12, key: 'per', text: 'Peru', value: 'per' },
-    { pos: 13, key: 'usa', text: 'USA', value: 'usa' },
+    { key: 'arg', text: 'Argentina', value: 'arg' },
+    { key: 'bra', text: 'Brasil', value: 'bra' },
+    { key: 'chl', text: 'Chile', value: 'chl' },
+    { key: 'chn', text: 'China', value: 'chn' },
+    { key: 'col', text: 'Colombia', value: 'col' },
+    { key: 'cub', text: 'Cuba', value: 'cub' },
+    { key: 'dnk', text: 'Dinamarca', value: 'dnk' },
+    { key: 'ecu', text: 'Ecuador', value: 'ecu' },
+    { key: 'esp', text: 'España', value: 'esp' },
+    { key: 'jpn', text: 'Japon', value: 'jpn' },
+    { key: 'mex', text: 'Mexico', value: 'mex' },
+    { key: 'pry', text: 'Paraguay', value: 'pry' },
+    { key: 'per', text: 'Peru', value: 'per' },
+    { key: 'usa', text: 'USA', value: 'usa' },
 ]
-
-
-// Buscador de Pais --> Valor de Moneda
-
-const countreis = _.times(countryOptions.length, (i) => ({
-    pos: i,
-    key: countryOptions[i].key,
-    text: countryOptions[i].text,
-    value: countryOptions[i].value,
-}))
-
-let select = countreis[0].pos;
-
-console.log(select);
