@@ -3,9 +3,9 @@
 Instalar y Ejecutar la Aplicación React:
 
 ```
-$> cd reaccion-ui
+$> cd react-ui/
 
-$> npm instalar
+$> npm install
 
 $> npm start
 ```
@@ -13,7 +13,7 @@ $> npm start
 Instalar y Ejecutar el Servidor API:
 
 ```
-$> npm instalar
+$> npm install
 
 $> npm start
 ```
@@ -25,7 +25,7 @@ En el directorio del proyecto, puede ejecutar:
 ### `npm start`
 
 Ejecuta la aplicación en el modo de desarrollo. <br>
-Abra [http: // localhost: 5000] (http: // localhost: 5000) para verlo en el navegador.
+Abra [http://localhost:5000](http://localhost:5000) para verlo en el navegador.
 
 ## Configuración de la Aplicación
 
