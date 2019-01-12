@@ -60,7 +60,7 @@ if (cluster.isMaster) {
     res.set("Content-Type", "application/json");
     axios({
       method: 'get',
-      url: `http://data.fixer.io/api/latest?access_key=ae16ba31b24815b48e29425238a19fb2&`,
+      url: `http://data.fixer.io/api/latest?access_key=ae16ba31b24815b48e29425238a19fb2&base=USD`,
       responseType: 'json'
     })
       .then(resp => {

@@ -3,16 +3,36 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Form, Input, TextArea, Button, Select, Checkbox, Segment } from 'semantic-ui-react'
+import currencies from './currencies'
 
 export default class FormView extends Component {
-    state = { moneyQty: '', currencySend: '', email: '', submittedName: '', submittedEmail: false, checked: false }
-    
-    componentDidMount(){
+    state = {
+        moneyQty: 0,
+        currencySend: 1,
+        email: '',
+        submittedName: '',
+        submittedEmail: false,
+        checked: false,
+        currencyRates: [
+            { key: 'ARS', text: 'Pesos Argentinos', value: '37.55' },
+            { key: 'BRL', text: 'Real Brasileño', value: '3.70' },
+            { key: 'CLP', text: 'Pesos Chilenos', value: '679.28' },
+            { key: 'COP', text: 'Pesos Colombianos', value: '3151.15' },
+            { key: 'CUP', text: 'Pesos Cubanos', value: '1.0' },
+            { key: 'DKK', text: 'Corona Danesa', value: '6.52' },
+            { key: 'MXN', text: 'Pesos Mexicanos', value: '19.35' },
+            { key: 'EUR', text: 'Euro', value: '0.87' },
+            { key: 'JPY', text: 'Yen', value: '108.85' },
+            { key: 'USD', text: 'Dolares', value: '1' },
+        ]
+    }
+
+    componentDidMount() {
         this.ratesAPI()
     }
 
     toggle = () => this.setState({ checked: !this.state.checked })
-    
+
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
     handleSubmit = () => {
@@ -30,19 +50,30 @@ export default class FormView extends Component {
         this.setState({ submittedInfo: body, submittedEmail: email, moneyQty: '', email: '', currencySend: '' })
     }
 
-    ratesAPI=()=>{
-        
+    ratesAPI = () => {
         axios({
             method: 'post',
             url: `/api/get_exchange`
         })
-        .then(resp=>{
-            console.log(resp.data.rates.data)
-        })
+            .then(resp => {
+                const rates = resp.data.rates.data.rates // TODO: poner restricciones y try/catch
+                this.setCurrencyRates(rates)
+            })
+    }
+
+    setCurrencyRates = (rates) => {
+        let currencyRates = [], symbol
+        for (symbol in rates) {
+            if (rates.hasOwnProperty(symbol)) {
+                currencyRates.push({ key: symbol, text: currencies[symbol], value: rates[symbol] })
+            }
+        }
+        this.setState({ currencyRates })
+
     }
 
     sendEmail = (email, body) => {
-        console.log('Trying to send email'+JSON.stringify(body))
+        console.log('Trying to send email' + JSON.stringify(body))
         return fetch("/api/send_email", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -50,7 +81,7 @@ export default class FormView extends Component {
         }).then(response => response.json());
     };
     render() {
-        const { moneyQty, currencySend, email, submittedInfo, submittedEmail, checked } = this.state
+        const { moneyQty, currencySend, email, submittedInfo, submittedEmail, checked, currencyRates } = this.state
 
         return (
             <Segment inverted>
@@ -58,7 +89,7 @@ export default class FormView extends Component {
                     <Form.Group widths='equal'>
                         <Form.Field
                             control={Select}
-                            options={coinsOptions}
+                            options={currencyRates}
                             label={{ children: 'Moneda a enviar', htmlFor: 'form-select-control-currency-send' }}
                             placeholder='Moneda a Enviar'
                             name='currencySend'
@@ -78,35 +109,26 @@ export default class FormView extends Component {
                         <Form.Field
                             id='form-input-control-money-value'
                             control={Input}
-                            value={'$'+Math.floor(((moneyQty*currencySend  + 0.01) * 100) - 0.01) / 100}
-                            label='Cantidad a Recibir en dolares'
-                            placeholder='$'
+                            value={Math.floor(((moneyQty / currencySend + 0.01) * 100) - 0.01) / 100 + ' €'}
+                            label='Cantidad a Recibir en euros'
+                            placeholder=' €'
                             name='moneyQtyAuto'
                             onChange={this.handleChange}
                         />
                     </Form.Group>
-                    
-                    <Form.Input
-                        label='Email'
-                        name='email'
-                        control={Input}
-                        placeholder='ejemplo@gmail.com'
-                        value={email}
-                        onChange={this.handleChange}
-                    />
-                    
+
                     {/* Receipt Area */}
                     <Form.Group widths='equal'>
                         <Form.Field
-                                control={Select}
-                                options={payOptions}
-                                label={{ children: 'Metodo', htmlFor: 'form-select-control-method-send' }}
-                                placeholder='Metodo de Pago'
-                                name='methodSend'
-                                search
-                                searchInput={{ id: 'form-select-control-method-send' }}
-                                onChange={this.handleChange}
-                            />
+                            control={Select}
+                            options={payOptions}
+                            label={{ children: 'Metodo de Envio', htmlFor: 'form-select-control-method-send' }}
+                            placeholder='Metodo de Pago'
+                            name='methodSend'
+                            search
+                            searchInput={{ id: 'form-select-control-method-send' }}
+                            onChange={this.handleChange}
+                        />
                         <Form.Field
                             control={Select}
                             options={payOptions}
@@ -117,18 +139,28 @@ export default class FormView extends Component {
                             searchInput={{ id: 'form-select-control-method-receive' }}
                             onChange={this.handleChange}
                         />
+                        <Form.Field
+                            control={Select}
+                            options={countryOptions}
+                            label={{ children: 'Pais de Destino', htmlFor: 'form-select-control-country-receive' }}
+                            placeholder='Elija un Pais con Cobertura'
+                            name='countryReceive'
+                            search
+                            searchInput={{ id: 'form-select-control-country-receive' }}
+                            onChange={this.handleChange}
+                        />
                     </Form.Group>
 
-                    <Form.Field
-                        control={Select}
-                        options={countryOptions}
-                        label={{ children: 'Pais de Destino', htmlFor: 'form-select-control-country-receive' }}
-                        placeholder='Elija un Pais con Cobertura'
-                        name='countryReceive'
-                        search
-                        searchInput={{ id: 'form-select-control-country-receive' }}
+
+                    <Form.Input
+                        label='Email de Contacto'
+                        name='email'
+                        control={Input}
+                        placeholder='ejemplo@gmail.com'
+                        value={email}
                         onChange={this.handleChange}
                     />
+
                     <Form.Field
                         id='form-textarea-control-opinion'
                         name='opinion'
@@ -168,18 +200,6 @@ export default class FormView extends Component {
 
 // Declaración de Constantes
 
-const coinsOptions = [
-    { key: 'ARS', text: 'Pesos Argentinos', value: '37.55' },
-    { key: 'BRL', text: 'Real Brasileño', value: '3.70' },
-    { key: 'CLP', text: 'Pesos Chilenos', value: '679.28' },
-    { key: 'COP', text: 'Pesos Colombianos', value: '3151.15' },
-    { key: 'CUP', text: 'Pesos Cubanos', value: '1.0' },
-    { key: 'DKK', text: 'Corona Danesa', value: '6.52' },
-    { key: 'MXN', text: 'Pesos Mexicanos', value: '19.35' },
-    { key: 'EUR', text: 'Euro', value: '0.87' },
-    { key: 'JPY', text: 'Yen', value: '108.85' },
-    { key: 'USD', text: 'Dolares', value: '1' },
-]
 
 const payOptions = [
     { key: 'paypal', text: 'PayPal', value: 'paypal' },

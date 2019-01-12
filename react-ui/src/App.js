@@ -2,8 +2,9 @@ import React, { Component } from "react";
 // import { Switch, Route } from "react-router-dom";
 import logo from "./logo.png";
 import "./App.css";
-import FormView from './Form';
-import { Card, Placeholder } from 'semantic-ui-react'
+// import FormView from './Form';
+import { Container } from 'semantic-ui-react';
+import MainForm from "./Form/MainForm";
 
 class App extends Component {
 
@@ -15,27 +16,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <div className="App-intro">
-          
 
-          <Card.Group itemsPerRow={2}>
-            <Card>
-              <Card.Content>
-                Moneda Origen
-                <Placeholder>
-                  <Placeholder.Image rectangular />
-                </Placeholder>
-              </Card.Content>
-            </Card>
-            <Card>
-              <Card.Content>
-                Moneda Destino
-                <Placeholder>
-                  <Placeholder.Image rectangular />
-                </Placeholder>
-              </Card.Content>
-            </Card>
-          </Card.Group>
-          <FormView />
+          <Container textAlign='center'>
+            <MainForm />
+          </Container>
+          {/* <FormView /> */}
         </div>
       </div>
     );
