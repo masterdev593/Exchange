@@ -5,7 +5,7 @@ En el directorio del proyecto, puede ejecutar:
 ### `npm start`
 
 Ejecuta la aplicación en el modo de desarrollo. <br>
-Abra [http: // localhost: 3000](http: // localhost: 3000) para verlo en el navegador.
+Abra [http://localhost:3000](http://localhost:3000) para verlo en el navegador.
 
 La página se volverá a cargar si realiza ediciones. <br>
 También verá los errores de pelusa en la consola.
