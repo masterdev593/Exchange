@@ -12,6 +12,7 @@
     "react-ui/node_modules"
   ],
   "dependencies": {
+    "axios": "^0.18.0",
     "dotenv": "^6.0.0",
     "ejs": "^2.6.1",
     "email-templates": "^4.0.1",
