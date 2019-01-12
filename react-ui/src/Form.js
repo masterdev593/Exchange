@@ -1,10 +1,16 @@
 // Importaciónes
-import _ from 'lodash'
+// import _ from 'lodash'
 import React, { Component } from 'react'
+import axios from 'axios'
 import { Form, Input, TextArea, Button, Select, Checkbox, Segment } from 'semantic-ui-react'
 
 export default class FormView extends Component {
     state = { moneyQty: '', currencySend: '', email: '', submittedName: '', submittedEmail: false, checked: false }
+    
+    componentDidMount(){
+        this.ratesAPI()
+    }
+
     toggle = () => this.setState({ checked: !this.state.checked })
     
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
@@ -22,6 +28,17 @@ export default class FormView extends Component {
             alert('Introduce un Correo Electrónico Valido');
         }
         this.setState({ submittedInfo: body, submittedEmail: email, moneyQty: '', email: '', currencySend: '' })
+    }
+
+    ratesAPI=()=>{
+        
+        axios({
+            method: 'post',
+            url: `/api/get_exchange`
+        })
+        .then(resp=>{
+            console.log(resp.data.rates.data)
+        })
     }
 
     sendEmail = (email, body) => {
@@ -61,8 +78,8 @@ export default class FormView extends Component {
                         <Form.Field
                             id='form-input-control-money-value'
                             control={Input}
-                            value={moneyQty*this.state.currencySend}
-                            label='Cantidad a Recibir'
+                            value={'$'+Math.floor(((moneyQty*currencySend  + 0.01) * 100) - 0.01) / 100}
+                            label='Cantidad a Recibir en dolares'
                             placeholder='$'
                             name='moneyQtyAuto'
                             onChange={this.handleChange}
